@@ -1,0 +1,55 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  InetUtil.hpp
+ *
+ *    Description:  Useful stuff regarding internet connections
+ *
+ *        Version:  1.0
+ *        Created:  04/01/2020 08:49:01 PM
+ *       Revision:  none
+ *
+ *         Author:  Samuel Knoethig (), samuel@knoethig.net
+ *
+ * =====================================================================================
+ */
+#pragma once
+
+#define DEFAULT_PORT 51347
+
+#ifdef _WIN32
+
+	#define WIN32_LEAN_AND_MEAN
+	#define NOMINMAX
+
+	#include "Windows.h"
+	#include "WinSock2.h"
+	#include "Ws2tcpip.h"
+
+	using socklen_t = int;
+	using Socket = SOCKET;
+
+	constexpr int EAGAIN = WSAWOULDBLOCK;
+	constexpr int ECONNRESET = WSAECONNRESET;
+
+#else
+
+	#include <sys/socket.h>
+	#include <sys/types.h>
+	#include <arpa/inet.h>
+	#include <netinet/in.h>
+	#include <netdb.h>
+	#include <errno.h>
+	#include <fcntl.h>
+	#include <unistd.h>
+	#include <cstring>
+
+	using Socket = int;
+	using sockaddr_in = struct sockaddr_in;
+
+#endif
+
+#include <memory>
+#include <stdexcept>
+
+#include <vector>
