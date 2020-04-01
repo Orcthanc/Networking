@@ -26,6 +26,8 @@
 	#include "WinSock2.h"
 	#include "Ws2tcpip.h"
 
+	#pragma comment(lib, "Ws2_32.lib")
+
 	using socklen_t = int;
 	using Socket = SOCKET;
 
