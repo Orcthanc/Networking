@@ -55,3 +55,26 @@
 #include <stdexcept>
 
 #include <vector>
+
+#ifdef _WIN32
+
+namespace Inet {
+	struct StaticInit {
+		StaticInit(){
+			WSADATA wsaData;
+			int iResult = WSAStartup(MAKEWORD(2, 2), &wsaData);
+			if ( iResult != NO_ERROR )
+			{
+				throw std::runtime_error( "Could not start WSA" );
+			}
+		}
+
+		~StaticInit(){
+			WSACleanup();
+		}
+	};
+
+	extern StaticInit wsa_init;
+}
+
+#endif
