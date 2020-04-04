@@ -31,8 +31,8 @@
 	using socklen_t = int;
 	using Socket = SOCKET;
 
-	constexpr int EAGAIN = WSAEWOULDBLOCK;
-	constexpr int ECONNRESET = WSAECONNRESET;
+	#define EAGAIN WSAEWOULDBLOCK
+	#define ECONNRESET WSAECONNRESET
 
 #else
 
