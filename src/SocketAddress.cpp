@@ -23,7 +23,7 @@ using namespace Inet;
 SocketAddress4::SocketAddress4( uint32_t in_address, uint16_t in_port ){
 	get_sockaddr_inptr()->sin_family = AF_INET;
 	get_sockaddr_inptr()->sin_addr.s_addr = htonl( in_address );
-	get_sockaddr_inptr()->sin_port = htonl( in_port );
+	get_sockaddr_inptr()->sin_port = htons( in_port );
 }
 
 SocketAddress4::SocketAddress4( const sockaddr& addr ){

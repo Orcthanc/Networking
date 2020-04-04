@@ -31,7 +31,7 @@
 	using socklen_t = int;
 	using Socket = SOCKET;
 
-	constexpr int EAGAIN = WSAWOULDBLOCK;
+	constexpr int EAGAIN = WSAEWOULDBLOCK;
 	constexpr int ECONNRESET = WSAECONNRESET;
 
 #else
