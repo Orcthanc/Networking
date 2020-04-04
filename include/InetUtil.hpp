@@ -55,6 +55,7 @@
 #include <stdexcept>
 
 #include <vector>
+#include <string>
 
 #ifdef _WIN32
 
