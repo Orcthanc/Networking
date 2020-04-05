@@ -31,8 +31,8 @@
 	using socklen_t = int;
 	using Socket = SOCKET;
 
-	#define EAGAIN WSAEWOULDBLOCK
-	#define ECONNRESET WSAECONNRESET
+	#define INET_WOULD_BLOCK WSAEWOULDBLOCK
+	#define INET_CONN_RESET WSAECONNRESET
 
 #else
 
@@ -48,6 +48,9 @@
 
 	using Socket = int;
 	using sockaddr_in = struct sockaddr_in;
+
+	#define INET_WOULD_BLOCK EAGAIN
+	#define INET_CONN_RESET ECONNRESET
 
 #endif
 
