@@ -17,6 +17,12 @@
 #include "SocketAddress.hpp"
 
 int main( int argc, char** argv ){
+	Inet::inet_init();
 	Inet::SocketAddress4( "192.168.178.32:25565" );
 	Inet::SocketAddress4( "www.google.de:25565" );
+	Inet::inet_cleanup();
+
+#ifdef _WIN32
+	system("pause");
+#endif
 }

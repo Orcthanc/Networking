@@ -49,12 +49,13 @@ SocketAddress4::SocketAddress4( const char* address ){
 	hint.ai_family = AF_INET;
 
 	addrinfo* res;
+	{
+		int temp = getaddrinfo(host.c_str(), port.c_str(), &hint, &res);
 
-	if( 0 != getaddrinfo( host.c_str(), port.c_str(), &hint, &res )){
-		freeaddrinfo( res );
-		throw std::runtime_error( "SocketAddress4::SocketAddress4( const char* )" );
+		if (0 != temp) {
+			throw std::runtime_error("SocketAddress4::SocketAddress4( const char* )");
+		}
 	}
-
 	addrinfo* temp = res;
 
 	while( !temp->ai_addr && temp->ai_next ){
