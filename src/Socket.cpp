@@ -53,6 +53,6 @@ int UDPSocket::send_to( const void* data, size_t data_len, const SocketAddress4&
 
 int UDPSocket::recv_from( void* data, size_t data_len, SocketAddress4& to ){
 	socklen_t size = to.size();
-	return recvfrom( sock, data, data_len, 0, &( to.socket_address ), &size );
+	return recvfrom( sock, static_cast<char*>( data ), data_len, 0, &( to.socket_address ), &size );
 }
 
