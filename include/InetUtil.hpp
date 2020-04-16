@@ -78,4 +78,12 @@ namespace Inet {
 		WSACleanup();
 #endif
 	}
+
+	inline int last_error(){
+#ifdef _WIN32
+		return WSAGetLastError();
+#else
+		return errno;
+#endif
+	}
 }

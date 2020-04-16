@@ -21,6 +21,7 @@
 using namespace Inet;
 
 SocketAddress4::SocketAddress4( uint32_t in_address, uint16_t in_port ){
+	memset( &socket_address, 0, sizeof( socket_address ));
 	get_sockaddr_inptr()->sin_family = AF_INET;
 	get_sockaddr_inptr()->sin_addr.s_addr = htonl( in_address );
 	get_sockaddr_inptr()->sin_port = htons( in_port );
@@ -65,17 +66,18 @@ SocketAddress4::SocketAddress4( const char* address ){
 	if( !temp->ai_addr )
 		throw std::runtime_error( "SocketAddress4::SocketAddress4( const char* )" );
 
+/*
 	char buf[100];
 	inet_ntop( temp->ai_family, &((sockaddr_in*)temp->ai_addr)->sin_addr, buf, 100 );
 	std::cout << buf << std::endl;
+*/
 
-
-	memcpy( &this->socket_address, &temp->ai_addr, sizeof( socket_address ));
+	memcpy( &socket_address, temp->ai_addr, sizeof( socket_address ));
 	freeaddrinfo( res );
 
 }
 
-size_t SocketAddress4::size(){
+size_t SocketAddress4::size() const{
 	return sizeof( socket_address );
 }
 

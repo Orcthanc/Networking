@@ -23,7 +23,7 @@ namespace Inet {
 		SocketAddress4( const sockaddr& sock_addr );
 		SocketAddress4( const char* address );
 		sockaddr_in* get_sockaddr_inptr();
-		size_t size();
+		size_t size() const;
 
 		sockaddr socket_address;
 	};
